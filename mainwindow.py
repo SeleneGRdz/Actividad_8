@@ -13,4 +13,4 @@ class MainWindow(QMainWindow):
 
     @Slot() #Definición de Slot
     def click_agregar(self):
-        print('click')
+        print('Agregado')
