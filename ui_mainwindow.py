@@ -18,6 +18,10 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(662, 400)
+        self.actionAbrir = QAction(MainWindow)
+        self.actionAbrir.setObjectName(u"actionAbrir")
+        self.actionGuardar = QAction(MainWindow)
+        self.actionGuardar.setObjectName(u"actionGuardar")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -27,7 +31,7 @@ class Ui_MainWindow(object):
         self.green_spinBox = QSpinBox(self.groupBox)
         self.green_spinBox.setObjectName(u"green_spinBox")
         self.green_spinBox.setGeometry(QRect(190, 220, 42, 22))
-        self.green_spinBox.setMaximum(500)
+        self.green_spinBox.setMaximum(255)
         self.green_spinBox.setSingleStep(1)
         self.label_3 = QLabel(self.groupBox)
         self.label_3.setObjectName(u"label_3")
@@ -74,7 +78,7 @@ class Ui_MainWindow(object):
         self.blue_spinBox = QSpinBox(self.groupBox)
         self.blue_spinBox.setObjectName(u"blue_spinBox")
         self.blue_spinBox.setGeometry(QRect(290, 220, 42, 22))
-        self.blue_spinBox.setMaximum(500)
+        self.blue_spinBox.setMaximum(255)
         self.blue_spinBox.setSingleStep(1)
         self.destinoX_spinBox = QSpinBox(self.groupBox)
         self.destinoX_spinBox.setObjectName(u"destinoX_spinBox")
@@ -95,7 +99,7 @@ class Ui_MainWindow(object):
         self.red_spinBox = QSpinBox(self.groupBox)
         self.red_spinBox.setObjectName(u"red_spinBox")
         self.red_spinBox.setGeometry(QRect(90, 220, 42, 22))
-        self.red_spinBox.setMaximum(500)
+        self.red_spinBox.setMaximum(255)
         self.red_spinBox.setSingleStep(1)
         self.label_8 = QLabel(self.groupBox)
         self.label_8.setObjectName(u"label_8")
@@ -119,7 +123,13 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 662, 21))
+        self.menuArchivo = QMenu(self.menubar)
+        self.menuArchivo.setObjectName(u"menuArchivo")
         MainWindow.setMenuBar(self.menubar)
+
+        self.menubar.addAction(self.menuArchivo.menuAction())
+        self.menuArchivo.addAction(self.actionAbrir)
+        self.menuArchivo.addAction(self.actionGuardar)
 
         self.retranslateUi(MainWindow)
 
@@ -128,6 +138,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.actionAbrir.setText(QCoreApplication.translate("MainWindow", u"Abrir", None))
+#if QT_CONFIG(shortcut)
+        self.actionAbrir.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionGuardar.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
+#if QT_CONFIG(shortcut)
+        self.actionGuardar.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Particula", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Origen en Y:", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Green:", None))
@@ -142,5 +160,6 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Red:", None))
         self.agregarInicio_pushButton.setText(QCoreApplication.translate("MainWindow", u"Agregar inicio", None))
         self.mostrar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Mostrar", None))
+        self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
     # retranslateUi
 
