@@ -1,6 +1,6 @@
 [
      {
-          "id": "8543",
+          "id": "123456",
           "origen_x": 1,
           "origen_y": 1,
           "destino_x": 1,
@@ -11,14 +11,14 @@
           "blue": 1
      },
      {
-          "id": "34534",
-          "origen_x": 0,
-          "origen_y": 0,
-          "destino_x": 0,
-          "destino_y": 0,
-          "velocidad": 0,
-          "red": 0,
-          "green": 0,
-          "blue": 0
+          "id": "654321",
+          "origen_x": 2,
+          "origen_y": 2,
+          "destino_x": 2,
+          "destino_y": 2,
+          "velocidad": 2,
+          "red": 2,
+          "green": 2,
+          "blue": 2
      }
 ]
