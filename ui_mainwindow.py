@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(705, 443)
+        MainWindow.resize(694, 502)
         self.actionAbrir = QAction(MainWindow)
         self.actionAbrir.setObjectName(u"actionAbrir")
         self.actionGuardar = QAction(MainWindow)
@@ -171,13 +171,35 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.tabWidget, 0, 0, 1, 1)
 
+        self.groupBox_2 = QGroupBox(self.centralwidget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.gridLayout_5 = QGridLayout(self.groupBox_2)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.ordenar_id_pushButton = QPushButton(self.groupBox_2)
+        self.ordenar_id_pushButton.setObjectName(u"ordenar_id_pushButton")
+
+        self.gridLayout_5.addWidget(self.ordenar_id_pushButton, 0, 0, 1, 1)
+
+        self.ordenar_distancia_pushButton = QPushButton(self.groupBox_2)
+        self.ordenar_distancia_pushButton.setObjectName(u"ordenar_distancia_pushButton")
+
+        self.gridLayout_5.addWidget(self.ordenar_distancia_pushButton, 0, 1, 1, 1)
+
+        self.ordenar_velocidad_pushButton = QPushButton(self.groupBox_2)
+        self.ordenar_velocidad_pushButton.setObjectName(u"ordenar_velocidad_pushButton")
+
+        self.gridLayout_5.addWidget(self.ordenar_velocidad_pushButton, 0, 2, 1, 1)
+
+
+        self.gridLayout_2.addWidget(self.groupBox_2, 1, 0, 1, 1)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 705, 21))
+        self.menubar.setGeometry(QRect(0, 0, 694, 21))
         self.menuArchivo = QMenu(self.menubar)
         self.menuArchivo.setObjectName(u"menuArchivo")
         MainWindow.setMenuBar(self.menubar)
@@ -188,7 +210,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -226,6 +248,10 @@ class Ui_MainWindow(object):
         self.dibujar.setText(QCoreApplication.translate("MainWindow", u"Dibujar", None))
         self.limpiar.setText(QCoreApplication.translate("MainWindow", u"Limpiar", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Particula", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
+        self.ordenar_id_pushButton.setText(QCoreApplication.translate("MainWindow", u"Ordenar por ID", None))
+        self.ordenar_distancia_pushButton.setText(QCoreApplication.translate("MainWindow", u"Ordenar por distancia", None))
+        self.ordenar_velocidad_pushButton.setText(QCoreApplication.translate("MainWindow", u"Ordenar por velocidad", None))
         self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
     # retranslateUi
 

@@ -31,7 +31,20 @@ class MainWindow(QMainWindow):
 
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
+
+        self.ui.ordenar_id_pushButton.clicked.connect(self.order_id)
+        self.ui.ordenar_distancia_pushButton.clicked.connect(self.order_distancia)
+        self.ui.ordenar_velocidad_pushButton.clicked.connect(self.order_velocidad)
     
+    def order_id(self):
+        self.administrador.order_by_id()
+
+    def order_distancia(self):
+        self.administrador.order_by_distancia()
+
+    def order_velocidad(self):
+        self.administrador.order_by_velocidad()
+
     def wheelEvent(self, event):
         print(event.delta())
         if event.delta() > 0:

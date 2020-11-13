@@ -35,6 +35,15 @@ class Administrador:
         else:
             raise StopIteration
 
+    def order_by_id(self):
+        self.__particulas.sort(key=lambda particula: particula.id)
+
+    def order_by_distancia(self):
+        self.__particulas.sort(key=lambda particula: particula.distancia, reverse=True)
+
+    def order_by_velocidad(self):
+        self.__particulas.sort(key=lambda particula: particula.velocidad)
+
     def guardar(self, ubicacion):
         try:
             #r significa que será escritura
