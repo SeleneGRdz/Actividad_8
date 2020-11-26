@@ -5,6 +5,7 @@ from administrador import Administrador
 from administrador import Particula
 from PySide2.QtGui import QPen, QColor, QTransform
 from random import randint
+from pprint import pprint, pformat
 
 #Controlador
 class MainWindow(QMainWindow):
@@ -22,6 +23,7 @@ class MainWindow(QMainWindow):
         
         self.ui.actionAbrir.triggered.connect(self.action_abrir_archivo)
         self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
+        self.ui.actionGrafo.triggered.connect(self.grafo)
 
         self.ui.mostrar_tabla_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
@@ -35,6 +37,7 @@ class MainWindow(QMainWindow):
         self.ui.ordenar_id_pushButton.clicked.connect(self.order_id)
         self.ui.ordenar_distancia_pushButton.clicked.connect(self.order_distancia)
         self.ui.ordenar_velocidad_pushButton.clicked.connect(self.order_velocidad)
+    
     
     def order_id(self):
         self.administrador.order_by_id()
@@ -53,6 +56,32 @@ class MainWindow(QMainWindow):
             self.ui.graphicsView.scale(0.8, 0.8)
 
     @Slot()
+    def grafo(self):
+        self.ui.salida.clear()
+        grafo = dict()
+        for particula in self.administrador:
+            origen = (particula.origen_x, particula.origen_y)
+            destino = (particula.destino_x, particula.destino_y)
+            distancia = (particula.distancia)
+
+            arista_origen = (origen, distancia)
+            arista_destino = (destino, distancia)
+
+            if origen in grafo:
+                grafo[origen].append(arista_destino)
+            else:
+                grafo[origen] = [arista_destino]
+            if destino in grafo:
+                grafo[destino].append(arista_origen)
+            else:
+                grafo[destino] = [arista_origen]
+            
+            impresion = pformat(grafo, width=40)
+            impresion+='\n'
+
+        self.ui.salida.insertPlainText(impresion)
+
+    @Slot()
     def dibujar(self):
         #print('dibujar')
 
@@ -69,12 +98,12 @@ class MainWindow(QMainWindow):
 
             x_origen = particula.origen_x
             y_origen = particula.origen_y
-            x_destin = particula.destino_x
-            y_destin = particula.destino_y
+            x_destino = particula.destino_x
+            y_destino = particula.destino_y
 
             self.scene.addEllipse(x_origen, y_origen, 6, 6, pen)
-            self.scene.addEllipse(x_destin, y_destin, 6, 6, pen)
-            self.scene.addLine(x_origen+3, y_origen+3, x_destin+3, y_destin+3, pen)
+            self.scene.addEllipse(x_destino, y_destino, 6, 6, pen)
+            self.scene.addLine(x_origen+3, y_origen+3, x_destino+3, y_destino+3, pen)
 
 
     @Slot()

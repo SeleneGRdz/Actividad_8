@@ -12,7 +12,7 @@ class Particula:
         self.__green = green
         self.__blue = blue
         self.__distancia = distancia
-        self.__distancia = distancia_euclidiana(origen_x, destino_x, origen_y, destino_y)
+        self.__distancia = distancia_euclidiana(origen_x, origen_y, destino_x, destino_y)
 
     def __str__(self):
         return ('ID: ' + str(self.__id) + '\n' +

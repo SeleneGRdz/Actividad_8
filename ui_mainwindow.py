@@ -22,6 +22,8 @@ class Ui_MainWindow(object):
         self.actionAbrir.setObjectName(u"actionAbrir")
         self.actionGuardar = QAction(MainWindow)
         self.actionGuardar.setObjectName(u"actionGuardar")
+        self.actionGrafo = QAction(MainWindow)
+        self.actionGrafo.setObjectName(u"actionGrafo")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -207,6 +209,8 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menuArchivo.addAction(self.actionAbrir)
         self.menuArchivo.addAction(self.actionGuardar)
+        self.menuArchivo.addSeparator()
+        self.menuArchivo.addAction(self.actionGrafo)
 
         self.retranslateUi(MainWindow)
 
@@ -225,6 +229,10 @@ class Ui_MainWindow(object):
         self.actionGuardar.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
 #if QT_CONFIG(shortcut)
         self.actionGuardar.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionGrafo.setText(QCoreApplication.translate("MainWindow", u"Grafo", None))
+#if QT_CONFIG(shortcut)
+        self.actionGrafo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+G", None))
 #endif // QT_CONFIG(shortcut)
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Particula", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Origen en Y:", None))
