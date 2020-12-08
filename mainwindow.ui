@@ -458,6 +458,7 @@
     <addaction name="actionGuardar"/>
     <addaction name="separator"/>
     <addaction name="actionGrafo"/>
+    <addaction name="actionRecorrido"/>
    </widget>
    <addaction name="menuArchivo"/>
   </widget>
@@ -483,6 +484,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionRecorrido">
+   <property name="text">
+    <string>Recorrido Profundidad/Amplitud</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

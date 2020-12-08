@@ -24,6 +24,8 @@ class Ui_MainWindow(object):
         self.actionGuardar.setObjectName(u"actionGuardar")
         self.actionGrafo = QAction(MainWindow)
         self.actionGrafo.setObjectName(u"actionGrafo")
+        self.actionRecorrido = QAction(MainWindow)
+        self.actionRecorrido.setObjectName(u"actionRecorrido")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -211,6 +213,7 @@ class Ui_MainWindow(object):
         self.menuArchivo.addAction(self.actionGuardar)
         self.menuArchivo.addSeparator()
         self.menuArchivo.addAction(self.actionGrafo)
+        self.menuArchivo.addAction(self.actionRecorrido)
 
         self.retranslateUi(MainWindow)
 
@@ -233,6 +236,10 @@ class Ui_MainWindow(object):
         self.actionGrafo.setText(QCoreApplication.translate("MainWindow", u"Grafo", None))
 #if QT_CONFIG(shortcut)
         self.actionGrafo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+G", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionRecorrido.setText(QCoreApplication.translate("MainWindow", u"Recorrido Profundidad/Amplitud", None))
+#if QT_CONFIG(shortcut)
+        self.actionRecorrido.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+R", None))
 #endif // QT_CONFIG(shortcut)
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Particula", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Origen en Y:", None))

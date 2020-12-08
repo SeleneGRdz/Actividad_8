@@ -13,6 +13,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__() #Se llama a la ventana
         
         self.administrador = Administrador()
+        self.grafo = dict()
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -23,7 +24,8 @@ class MainWindow(QMainWindow):
         
         self.ui.actionAbrir.triggered.connect(self.action_abrir_archivo)
         self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
-        self.ui.actionGrafo.triggered.connect(self.grafo)
+        self.ui.actionGrafo.triggered.connect(self.to_graph)
+        self.ui.actionRecorrido.triggered.connect(self.action_recorrido)
 
         self.ui.mostrar_tabla_pushButton.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
@@ -37,7 +39,7 @@ class MainWindow(QMainWindow):
         self.ui.ordenar_id_pushButton.clicked.connect(self.order_id)
         self.ui.ordenar_distancia_pushButton.clicked.connect(self.order_distancia)
         self.ui.ordenar_velocidad_pushButton.clicked.connect(self.order_velocidad)
-    
+
     
     def order_id(self):
         self.administrador.order_by_id()
@@ -56,9 +58,61 @@ class MainWindow(QMainWindow):
             self.ui.graphicsView.scale(0.8, 0.8)
 
     @Slot()
-    def grafo(self):
+    def action_recorrido(self):
+        
+        #Amplitud
+        cola = []
+        visitados = []
+        recorrido = []
+
+        self.to_graph()
+
+        x = self.ui.origenX_spinBox.value() 
+        y = self.ui.origenY_spinBox.value()
+        cola.append((x,y))
+        visitados.append((x,y))
+        while cola:
+            padre = cola[-1] #En esta parte, se saca el tope de la lista
+            recorrido.append(padre)
+            del cola[-1]
+            adyacentes = self.grafo[padre] #Aquí se sacan los adyacentes
+            for a in adyacentes:
+                if a[0] not in visitados:
+                    visitados.append(a[0])
+                    cola.append(a[0])
+                else:
+                    break
+        print(visitados)
+        self.ui.salida.insertPlainText("\nAmplitud\n")
+        self.ui.salida.insertPlainText(str(recorrido))
+
+        #Profundidad
+        pila = []
+        visitados = []
+        recorrido = []
+        
+        x = self.ui.origenX_spinBox.value()
+        y = self.ui.origenY_spinBox.value()
+        pila.append((x,y))
+        visitados.append((x,y))
+        while pila:
+            padre = pila[0] #Sacamos el tope de la lista
+            recorrido.append(padre)
+            del pila[0]
+            adyacentes = self.grafo[padre] #Sacamos los adyacentes
+            for a in adyacentes:
+                if a[0] not in visitados:
+                    visitados.append(a[0])
+                    pila.append(a[0])
+                else:
+                    break
+        print(visitados)
+        self.ui.salida.insertPlainText("\n\nProfundidad\n")
+        self.ui.salida.insertPlainText(str(visitados))
+
+    @Slot()
+    def to_graph(self):
         self.ui.salida.clear()
-        grafo = dict()
         for particula in self.administrador:
             origen = (particula.origen_x, particula.origen_y)
             destino = (particula.destino_x, particula.destino_y)
@@ -67,16 +121,16 @@ class MainWindow(QMainWindow):
             arista_origen = (origen, distancia)
             arista_destino = (destino, distancia)
 
-            if origen in grafo:
-                grafo[origen].append(arista_destino)
+            if origen in self.grafo:
+                self.grafo[origen].append(arista_destino)
             else:
-                grafo[origen] = [arista_destino]
-            if destino in grafo:
-                grafo[destino].append(arista_origen)
+                self.grafo[origen] = [arista_destino]
+            if destino in self.grafo:
+                self.grafo[destino].append(arista_origen)
             else:
-                grafo[destino] = [arista_origen]
+                self.grafo[destino] = [arista_origen]
             
-            impresion = pformat(grafo, width=40)
+            impresion = pformat(self.grafo, width=40)
             impresion+='\n'
 
         self.ui.salida.insertPlainText(impresion)
